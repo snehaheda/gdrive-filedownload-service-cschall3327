@@ -40,6 +40,13 @@
             <version>4.10</version>
             <scope>test</scope>
         </dependency>
+        
+        <!-- drive -->
+         <dependency>
+	      <groupId>com.google.apis</groupId>
+	      <artifactId>google-api-services-drive</artifactId>
+	      <version>v2-rev113-1.17.0-rc</version>
+	    </dependency>
     </dependencies>
 
     <build>
