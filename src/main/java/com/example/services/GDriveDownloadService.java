@@ -30,12 +30,12 @@ import java.util.*;
 
 
 @Path("/downloadfile")
-@Produces("text/plain")
+
 public class GDriveDownloadService {
 
 	@GET
 	@Path("/{fileId}")
-	public HttpResponse  get(@HeaderParam("accessToken") String accessToken,@PathParam("fileId") String fileId) throws Exception {
+	public InputStream  get(@HeaderParam("accessToken") String accessToken,@PathParam("fileId") String fileId) throws Exception {
 		
 		//set the token
 		GoogleTokenResponse response  = new GoogleTokenResponse();
@@ -56,8 +56,8 @@ public class GDriveDownloadService {
 	          HttpResponse resp =
 	              service.getRequestFactory().buildGetRequest(new GenericUrl(file.getDownloadUrl()))
 	                  .execute();
-	          return resp;
-	          //return resp.getContent();
+	      
+	          return resp.getContent();
 	        } catch (IOException e) {
 	          // An error occurred.	         
 	          return null;
