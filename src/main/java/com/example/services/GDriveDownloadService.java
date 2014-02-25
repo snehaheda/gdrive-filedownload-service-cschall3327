@@ -28,11 +28,11 @@ import java.io.InputStream;
 import java.util.*;
 
 
-import java.net.URL;
+
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.InputStreamReader;
-import javax.net.ssl.HttpsURLConnection;
+
 
 @Path("/downloadfile")
 
@@ -42,27 +42,6 @@ public class GDriveDownloadService {
 	@Path("/{fileId}")
 	public String  get(@HeaderParam("accessToken") String accessToken,@PathParam("fileId") String fileId) throws Exception {
 		
-		String url = "https://www.googleapis.com/drive/v2/files/"+fileId;
-		 
-		URL obj = new URL(url);
-		HttpsURLConnection con = (HttpsURLConnection) obj.openConnection();
- 
-		// optional default is GET
-		con.setRequestMethod("GET");
- 
-		//add request header
-		con.setRequestProperty("Authorization", "Bearer "+accessToken);
-		BufferedReader in = new BufferedReader(
-		        new InputStreamReader(con.getInputStream()));
-		String inputLine;
-		StringBuffer response2 = new StringBuffer();
- 
-		while ((inputLine = in.readLine()) != null) {
-			response2.append(inputLine);
-		}
-		in.close();
-		return response2.toString();
-		/*
 		String msg = "Error!";
 		
 		//set the token
@@ -85,14 +64,23 @@ public class GDriveDownloadService {
 	              service.getRequestFactory().buildGetRequest(new GenericUrl(file.getDownloadUrl()))
 	                  .execute();
 	        
-	           return new Scanner(resp.getContent()).useDelimiter("\\A").next();
+	             BufferedReader in = new BufferedReader(
+	  		        new InputStreamReader(resp.getContent()));
+		  		String inputLine;
+		  		StringBuffer response2 = new StringBuffer();
+		   
+		  		while ((inputLine = in.readLine()) != null) {
+		  			response2.append(inputLine);
+		  		}
+		  		in.close();
+		  		return response2.toString();
 	          
 	        } catch (IOException e) {
 	          // An error occurred.	         
-	          return msg;
+	          return null;
 	        }
 	    }
-	    return fileId;*/
+	    return null;
 	}
 
 }
