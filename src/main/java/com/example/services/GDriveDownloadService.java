@@ -22,8 +22,7 @@ import com.google.api.client.http.HttpResponse;
 import java.io.InputStream;
 
 import java.io.IOException;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
+
 
 
 @Path("/downloadfile")
@@ -34,7 +33,7 @@ public class GDriveDownloadService {
 	@Path("/{fileId}")
 	public InputStream  get(@HeaderParam("accessToken") String accessToken,@PathParam("fileId") String fileId) throws Exception {
 		
-		String msg = "Error!";
+
 		
 		//set the token
 		GoogleTokenResponse response  = new GoogleTokenResponse();
