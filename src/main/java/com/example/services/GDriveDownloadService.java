@@ -66,7 +66,7 @@ public class GDriveDownloadService {
 	          return msg;
 	        }
 	    }
-	    return msg;
+	    return file.getDownloadUrl();
 	}
 
 }
