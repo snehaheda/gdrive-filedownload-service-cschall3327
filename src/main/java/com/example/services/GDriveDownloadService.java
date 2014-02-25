@@ -7,6 +7,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.PathParam;
+import javax.ws.rs.HeaderParam;
 
 import com.google.api.client.googleapis.auth.oauth2.GoogleCredential;
 import com.google.api.client.googleapis.auth.oauth2.GoogleTokenResponse;
@@ -33,7 +34,7 @@ public class GDriveDownloadService {
 
 	@GET
 	@Path("/{token}/{fileId}")
-	public InputStream  get(@PathParam("token") String accessToken,@PathParam("fileId") String fileId) throws Exception {
+	public InputStream  get(@HeaderParam("accessToken") String accessToken,@PathParam("fileId") String fileId) throws Exception {
 		
 		//set the token
 		GoogleTokenResponse response  = new GoogleTokenResponse();
