@@ -7,6 +7,8 @@
     <artifactId>jax-rs-heroku</artifactId>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+         <project.http.version>1.17.0-rc</project.http.version>
+	    <project.oauth.version>1.17.0-rc</project.oauth.version>
     </properties>
     <dependencies>
         <!-- Jetty -->
@@ -43,17 +45,25 @@
         
         <!-- drive -->
          <dependency>
-	      <groupId>com.google.apis</groupId>
-	      <artifactId>google-api-services-drive</artifactId>
-	      <version>v2-rev113-1.17.0-rc</version>
-	    </dependency>
-	    
-	    <dependency>
-			<groupId>com.google.http-client</groupId>
-			<artifactId>google-http-client-jackson2</artifactId>
-			<version>1.11.0-beta</version>
-		</dependency>
-	    
+		      <groupId>com.google.apis</groupId>
+		      <artifactId>google-api-services-drive</artifactId>
+		      <version>v2-rev98-1.17.0-rc</version>
+		    </dependency>
+		    <dependency>
+		      <groupId>com.google.http-client</groupId>
+		      <artifactId>google-http-client</artifactId>
+		      <version>${project.http.version}</version>
+		    </dependency>
+		    <dependency>
+		      <groupId>com.google.http-client</groupId>
+		      <artifactId>google-http-client-jackson2</artifactId>
+		      <version>${project.http.version}</version>
+		    </dependency>
+		    <dependency>
+		      <groupId>com.google.oauth-client</groupId>
+		      <artifactId>google-oauth-client-jetty</artifactId>
+		      <version>${project.oauth.version}</version>
+		 </dependency>
     </dependencies>
 
     <build>
@@ -104,4 +114,6 @@
             </plugins>
         </pluginManagement>
     </build>
+    
+     
 </project>
