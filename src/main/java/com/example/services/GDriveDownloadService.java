@@ -37,6 +37,8 @@ public class GDriveDownloadService {
 	@Path("/{fileId}")
 	public String  get(@HeaderParam("accessToken") String accessToken,@PathParam("fileId") String fileId) throws Exception {
 		
+		String msg = "Error!";
+		
 		//set the token
 		GoogleTokenResponse response  = new GoogleTokenResponse();
 		response.setAccessToken(accessToken);
@@ -61,10 +63,10 @@ public class GDriveDownloadService {
 	          
 	        } catch (IOException e) {
 	          // An error occurred.	         
-	          return null;
+	          return msg;
 	        }
 	    }
-	    return null;
+	    return msg;
 	}
 
 }
