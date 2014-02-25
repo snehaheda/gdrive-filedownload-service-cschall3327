@@ -4,8 +4,6 @@ package com.example.services;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.HeaderParam;
 
@@ -21,16 +19,10 @@ import com.google.api.services.drive.model.File;
 import com.google.api.client.http.GenericUrl;
 import com.google.api.client.http.HttpResponse;
 
+import java.io.InputStream;
 
 import java.io.IOException;
-
-import java.io.InputStream;
-import java.util.*;
-
-
-
 import java.io.BufferedReader;
-import java.io.DataOutputStream;
 import java.io.InputStreamReader;
 
 
@@ -40,7 +32,7 @@ public class GDriveDownloadService {
 
 	@GET
 	@Path("/{fileId}")
-	public String  get(@HeaderParam("accessToken") String accessToken,@PathParam("fileId") String fileId) throws Exception {
+	public InputStream  get(@HeaderParam("accessToken") String accessToken,@PathParam("fileId") String fileId) throws Exception {
 		
 		String msg = "Error!";
 		
@@ -63,17 +55,7 @@ public class GDriveDownloadService {
 	          HttpResponse resp =
 	              service.getRequestFactory().buildGetRequest(new GenericUrl(file.getDownloadUrl()))
 	                  .execute();
-	        
-	             BufferedReader in = new BufferedReader(
-	  		        new InputStreamReader(resp.getContent()));
-		  		String inputLine;
-		  		StringBuffer response2 = new StringBuffer();
-		   
-		  		while ((inputLine = in.readLine()) != null) {
-		  			response2.append(inputLine);
-		  		}
-		  		in.close();
-		  		return response2.toString();
+	          return resp.getContent();
 	          
 	        } catch (IOException e) {
 	          // An error occurred.	         
