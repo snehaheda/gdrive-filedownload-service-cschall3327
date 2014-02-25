@@ -33,7 +33,7 @@ import java.util.*;
 public class GDriveDownloadService {
 
 	@GET
-	@Path("/{token}/{fileId}")
+	@Path("/{fileId}")
 	public InputStream  get(@HeaderParam("accessToken") String accessToken,@PathParam("fileId") String fileId) throws Exception {
 		
 		//set the token
